@@ -11,6 +11,7 @@ public class SpeedTracker
     "In the distance, birds sang their final songs of the day, creating a soothing symphony that echoed softly in the twilight.";
 
         // Describe program to user.
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("Welcome to Type Speed Tracker!");
         Console.WriteLine("You'll be given a paragraph to type exactly as it appears.");
         Console.WriteLine("Pay attention to uppercase letters and punctuation marks.");
@@ -19,6 +20,7 @@ public class SpeedTracker
         Console.WriteLine(sentence);
         Console.WriteLine();
 
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write("Press 'Y' when you are ready to start: ");
 
         string? choice = Console.ReadLine()?.Trim().ToLower();
@@ -31,11 +33,13 @@ public class SpeedTracker
         // Get time before and after user types text to get total time elapsed.
         DateTime before = DateTime.Now;
 
+        Console.ForegroundColor = ConsoleColor.Cyan;
         string? textInput = Console.ReadLine();
         Console.WriteLine();
 
         if (textInput == null)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Invalid text");
             return;
         }
@@ -44,6 +48,7 @@ public class SpeedTracker
         TimeSpan timeSpan = after - before;
         TypeResult result = new(textInput, timeSpan);
 
+        Console.ForegroundColor = ConsoleColor.White;
         result.DisplayTime();
         result.DisplayWPM();
         result.DisplayAccuracy(sentence);
@@ -55,11 +60,14 @@ public class SpeedTracker
     {
         return Task.Run(async () =>
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
             for (int i = 3; i > 0; i--)
             {
                 Console.WriteLine($"{i}...");
                 await Task.Delay(1000);
             }
+
             Console.WriteLine("Start!");
         });
     }
